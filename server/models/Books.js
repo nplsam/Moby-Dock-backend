@@ -25,7 +25,7 @@ class Book {
   }
 
   static async create(data) {
-    const { name, author, genre } = data
+    const { name: name, author: author, genre: genre } = data
     const response = await db.query('INSERT INTO books (name, author, genre) VALUES ($1, $2, $3) RETURNING *', [name, author, genre]);
     const bookId = response.rows[0].book_id;
     const newBook = await Book.getOneById(bookId);
