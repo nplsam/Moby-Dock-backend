@@ -17,3 +17,4 @@ volumes:
     name: library_v
 
 # DB_URL=postgres:sam:qwerty@localhost:5432/library
+# $ winpty docker exec -it library psql -U sam library
