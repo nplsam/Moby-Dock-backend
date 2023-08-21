@@ -34,7 +34,7 @@ class Book {
 
 async update(data) {
   const { name: name, author: author, genre: genre } = data
-  const response = await db.query('UPDATE books SET name = $1, author = $2, genre = $3 WHERE book_id = $4 RETURNING *', [name, author, genre, this.id])
+  const response = await db.query('UPDATE books SET name = $1, author = $2, genre = $3 WHERE id = $4 RETURNING *', [name, author, genre, this.id])
 
   if (response.rows.length != 1) {
       throw new Error('Unable to update book.')
