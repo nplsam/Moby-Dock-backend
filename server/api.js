@@ -2,7 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const logger = require('morgan')
 
-const bookRoutes = require('./routes/bookRoutes')
+const bookRouter = require('./routes/bookRoutes')
+const userRouter = require('./routes/userRoutes')
+
 const api = express()
 
 api.use(cors())
@@ -16,6 +18,7 @@ api.get('/', (req, res) => {
     })
 })
 
-api.get('/books', bookRoutes)
+api.get('/books', bookRouter)
+api.get('/users', userRouter)
 
 module.exports = api

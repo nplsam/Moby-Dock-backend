@@ -7,7 +7,7 @@ class Book {
   }
 
   static async getAll() {
-    const response = await db.query("SELECT * FROM books");
+    const response = await db.query('SELECT * FROM books');
     if (response.rows.length === 0) {
         throw new Error("No books available.")
     }
@@ -15,7 +15,7 @@ class Book {
   }
 
   static async getOneById(id) {
-    const response = await db.query("SELECT * FROM books WHERE book_id = $1", [id]);
+    const response = await db.query('SELECT * FROM books WHERE book_id = $1', [id]);
     if (response.rows.length != 1) {
         throw new Error("Unable to locate book.")
     }
@@ -32,10 +32,10 @@ class Book {
 
 async update(data) {
   const { title: title, author: author } = data
-  const response = await db.query("UPDATE books SET title = $1, author = $2 WHERE book_id = $3 RETURNING *", [title, author, this.id])
+  const response = await db.query('UPDATE books SET title = $1, author = $2 WHERE book_id = $3 RETURNING *', [title, author, this.id])
 
   if (response.rows.length != 1) {
-      throw new Error("Unable to update book.")
+      throw new Error('Unable to update book.')
   }
   return new Book(response.rows[0]);
 }
@@ -43,7 +43,7 @@ async update(data) {
 async destroy() {
   const response = await db.query('DELETE FROM books WHERE book_id = $1 RETURNING *', [this.id]);
   if (response.rows.length != 1) {
-      throw new Error("Unable to delete book.")
+      throw new Error('Unable to delete book.')
   }
   return new Book(response.rows[0]);
 }
