@@ -9,6 +9,10 @@ CREATE TABLE books (
     PRIMARY KEY (id)
 );
 
+INSERT INTO books (name, genre)
+VALUES
+    ('Moby-Dick', 'Adventure Fiction');
+
 CREATE TABLE user_account (
     id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(30) UNIQUE NOT NULL,
@@ -23,7 +27,3 @@ CREATE TABLE token (
     PRIMARY KEY (token_id),
     FOREIGN KEY (user_id) REFERENCES user_account("user_id")
 );
-
-INSERT INTO books (name, genre)
-VALUES
-    ('Moby-Dick', 'Adventure Fiction');
