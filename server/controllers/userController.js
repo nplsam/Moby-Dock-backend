@@ -6,7 +6,7 @@ async function register (req, res) {
   try {
       const data = req.body;
 
-      const salt = await bcrypt.genSalt(parseInt(BCRYPT_SALT_ROUNDS));
+      const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
       data.password = await bcrypt.hash(data.password, salt);
       const result = await User.create(data);
       res.status(201).send(result);

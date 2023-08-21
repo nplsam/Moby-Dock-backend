@@ -1,9 +1,11 @@
+const db = require('../database/connect')
 
 class Book {
   constructor(data) {
-    this.id = data.book_id
-    this.title = data.title
+    this.id = data.id
+    this.name = data.name
     this.author = data.author
+    this.genre = data.genre
   }
 
   static async getAll() {
@@ -15,7 +17,7 @@ class Book {
   }
 
   static async getOneById(id) {
-    const response = await db.query('SELECT * FROM books WHERE book_id = $1', [id]);
+    const response = await db.query('SELECT * FROM books WHERE id = $1', [id]);
     if (response.rows.length != 1) {
         throw new Error("Unable to locate book.")
     }
@@ -23,16 +25,16 @@ class Book {
   }
 
   static async create(data) {
-    const { book_id, title, author } = data
-    const response = await db.query('INSERT INTO books ( book_id, title, author) VALUES ($1, $2, $3) RETURNING *', [book_id, title, author]);
+    const { name, author, genre } = data
+    const response = await db.query('INSERT INTO books (name, author, genre) VALUES ($1, $2, $3) RETURNING *', [name, author, genre]);
     const bookId = response.rows[0].book_id;
     const newBook = await Book.getOneById(bookId);
     return newBook;
 }
 
 async update(data) {
-  const { title: title, author: author } = data
-  const response = await db.query('UPDATE books SET title = $1, author = $2 WHERE book_id = $3 RETURNING *', [title, author, this.id])
+  const { name: name, author: author, genre: genre } = data
+  const response = await db.query('UPDATE books SET name = $1, author = $2, genre = $3 WHERE book_id = $4 RETURNING *', [name, author, genre, this.id])
 
   if (response.rows.length != 1) {
       throw new Error('Unable to update book.')
@@ -41,7 +43,7 @@ async update(data) {
 }
 
 async destroy() {
-  const response = await db.query('DELETE FROM books WHERE book_id = $1 RETURNING *', [this.id]);
+  const response = await db.query('DELETE FROM books WHERE id = $1 RETURNING *', [this.id]);
   if (response.rows.length != 1) {
       throw new Error('Unable to delete book.')
   }
@@ -49,7 +51,5 @@ async destroy() {
 }
   
 }
-
-
 
 module.exports = Book

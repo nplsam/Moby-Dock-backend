@@ -1,13 +1,13 @@
 
 class User {
   constructor(data) {
-    this.id = data.user_id
+    this.user_id = data.user_id
     this.username = data.username
     this.password = data.password
   }
 
   static async getOneById(id) {
-    const response = await db.query("SELECT * FROM users WHERE user_id = $1", [id]);
+    const response = await db.query("SELECT * FROM user_account WHERE user_id = $1", [id]);
     if (response.rows.length != 1) {
         throw new Error('Unable to locate user.');
     }
@@ -15,7 +15,7 @@ class User {
   }
 
   static async getOneByUsername(username) {
-    const response = await db.query("SELECT * FROM users WHERE username = $1", [username]);
+    const response = await db.query("SELECT * FROM user_account WHERE username = $1", [username]);
     if (response.rows.length != 1) {
         throw new Error('Unable to locate user.');
     }
@@ -24,7 +24,7 @@ class User {
 
   static async create(data) {
     const { username, password } = data
-    let response = await db.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING user_id",
+    let response = await db.query("INSERT INTO user_account (username, password) VALUES ($1, $2) RETURNING user_id",
         [username, password]);
     const newId = response.rows[0].user_id;
     const newUser = await User.getOneById(newId);
