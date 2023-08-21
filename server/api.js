@@ -18,7 +18,7 @@ api.get('/', (req, res) => {
     })
 })
 
-api.get('/books', bookRouter)
-api.get('/users', userRouter)
+api.use('/books', bookRouter)
+api.use('/users', userRouter)
 
 module.exports = api
