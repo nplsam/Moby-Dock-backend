@@ -14,10 +14,10 @@ VALUES
     ('Moby-Dick', 'Adventure Fiction');
 
 CREATE TABLE user_account (
-    id INT GENERATED ALWAYS AS IDENTITY,
+    user_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(30) UNIQUE NOT NULL,
     password CHAR(60) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (user_id)
 );
 
 CREATE TABLE token (
