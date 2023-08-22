@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const db = require("./connect")
 
-const sql = fs.readFileSync('./database/data.sql').toString()
+const sql = fs.readFileSync(__dirname + '/data.sql').toString()
 
 db.query(sql)
     .then(data => {
@@ -11,5 +11,3 @@ db.query(sql)
         console.log("Set-up complete!")
     })
     .catch(error => console.log(error))
-
-    
