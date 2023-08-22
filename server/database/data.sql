@@ -7,7 +7,7 @@ CREATE TABLE books (
     name VARCHAR (100) NOT NULL,
     author VARCHAR (50) NOT NULL,
     genre VARCHAR (30) NOT NULL,
-    reserved BOOLEAN SET default FALSE;
+    reserved BOOLEAN SET default FALSE,
     PRIMARY KEY (id)
 );
 
