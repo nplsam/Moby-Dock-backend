@@ -26,7 +26,7 @@ VALUES
     ('Harry Potter and the Prisoner of Azkaban', 'J.K. Rowling', 'Fiction', FALSE, 'https://assets.mugglenet.com/wp-content/uploads/2018/01/PoA-Amazon-Kindle-Cover-683x1024.jpeg'),
     ('Angels and Demons', 'Dan Brown', 'Crime Thriller', FALSE, 'https://m.media-amazon.com/images/I/41XfUhPVBSL.jpg'),
     ('Harry Potter and the Half-blood Prince', 'J.K. Rowling', 'Fiction', FALSE, 'https://upload.wikimedia.org/wikipedia/en/b/b5/Harry_Potter_and_the_Half-Blood_Prince_cover.png'),
-    ('Fifty Shades Darker', 'E.L. James', 'Romance', FALSE, 'https://images-eu.ssl-images-amazon.com/images/I/81jSpl8MB7L._AC_UL600_SR600,600_.jpg'),
+    ('Fifty Shades Darker', 'E.L. James', 'Romance', FALSE, 'https://cdn.penguin.co.uk/dam-assets/books/9781529199796/9781529199796-jacket-large.jpg'),
     ('Twilight', 'Stephenie Meye', 'Fiction', FALSE, 'https://m.media-amazon.com/images/I/615ZIxEDozL._AC_UF1000,1000_QL80_.jpg'),
     ('Girl with the Dragon Tattoo, The:Millennium Trilogy', 'Stieg Larsson', 'Crime Thriller', FALSE, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684638853l/2429135.jpg'),
     ('Fifty Shades Freed', 'E.L. James', 'Romance', FALSE, 'https://media.lovehoneyassets.com/i/lovehoney/37880_000?$primary$&h=765&w=574'),
