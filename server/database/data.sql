@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS books cascade;
 DROP TABLE IF EXISTS user_account cascade;
 DROP TABLE IF EXISTS token;
+DROP TABLE IF EXISTS reserved_books;
 
 CREATE TABLE books(
     id INT GENERATED ALWAYS AS IDENTITY, 
@@ -131,3 +132,13 @@ CREATE TABLE token (
     PRIMARY KEY (token_id),
     FOREIGN KEY (user_id) REFERENCES user_account("user_id")
 );
+
+CREATE TABLE reserved_books (
+    reserved_id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(100),
+    book_id INT REFERENCES books(id),
+    user_id INT REFERENCES user_account(user_id),
+    pick_up_by DATE,
+    PRIMARY KEY (reserved_id)
+)
+
