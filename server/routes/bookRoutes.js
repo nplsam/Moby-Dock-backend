@@ -5,6 +5,7 @@ const bookController = require('../controllers/bookController')
 
 bookRouter.get('/', bookController.index)
 bookRouter.get('/:id', bookController.show)
+bookRouter.get('/:genre', bookController.findByGenre)
 bookRouter.post('/', bookController.create)
 bookRouter.patch('/:id', bookController.update)
 bookRouter.delete('/:id', bookController.destroy)
