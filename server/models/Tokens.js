@@ -5,7 +5,7 @@ class Token {
   constructor(data){
     this.token_id = data.token_id
     this.user_id = data.user_id
-    this.token = token
+    this.token = data.token
   }
 
   static async create(user_id) {
