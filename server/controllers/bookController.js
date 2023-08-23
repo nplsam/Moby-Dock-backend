@@ -21,7 +21,7 @@ async function show (req, res) {
 
 async function findByGenre (req, res) {
   try {
-      const genre = req.params.name.toLowerCase()
+      const genre = req.params.genre.toLowerCase()
       const book = await Book.findByGenre(genre);
       res.status(200).json(book);
   } catch (err) {
