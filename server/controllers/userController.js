@@ -5,7 +5,6 @@ const Token = require('../models/Tokens')
 async function register (req, res) {
   try {
       const data = req.body;
-
       const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
       data.password = await bcrypt.hash(data.password, salt);
       const result = await User.create(data);
@@ -31,8 +30,19 @@ async function login (req, res) {
   }
 }
 
+async function logout (req, res) {
+  try {
+    const validToken = await Token.getOneByToken(req.headers["authorization"])
+    const user = await User.getOneById(validToken.user_id)
+    await validToken.destroy()
+    res.status(200).json("Successfully logged out.")
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
 
 module.exports = {
   register,
-  login
+  login,
+  logout
 }

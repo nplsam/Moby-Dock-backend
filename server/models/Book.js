@@ -26,31 +26,39 @@ class Book {
     return new Book(response.rows[0]);
   }
 
+  // static async findByName(name) {
+  //   const response = await db.query('SELECT * WHERE LOWER(name) = $1', [name]);
+  //   if (response.rows.length != 1) {
+  //       throw new Error("Unable to locate book.")
+  //   }
+  //   return new Book(response.rows[0]);
+  // }
+
   static async create(data) {
     const { name: name, author: author, genre: genre, reserved: reserved, image: image } = data
     const response = await db.query('INSERT INTO books (name, author, genre) VALUES ($1, $2, $3) RETURNING *', [name, author, genre, reserved, image]);
-    const bookId = response.rows[0].id;
-    const newBook = await Book.getOneById(bookId);
-    return newBook;
-}
-
-async update(data) {
-  const { name: name, author: author, genre: genre, reserved: reserved } = data
-  const response = await db.query('UPDATE books SET name = $1, author = $2, genre = $3 WHERE id = $4 RETURNING *', [name, author, genre, reserved, this.id])
-
-  if (response.rows.length != 1) {
-      throw new Error('Unable to update book.')
+    const bookId = response.rows[0].id
+    const newBook = await Book.getOneById(bookId)
+    return newBook
   }
-  return new Book(response.rows[0]);
-}
 
-async destroy() {
-  const response = await db.query('DELETE FROM books WHERE id = $1 RETURNING *', [this.id]);
-  if (response.rows.length != 1) {
-      throw new Error('Unable to delete book.')
+  async update(data) {
+    const { name: name, author: author, genre: genre, reserved: reserved } = data
+    const response = await db.query('UPDATE books SET name = $1, author = $2, genre = $3 WHERE id = $4 RETURNING *', [name, author, genre, reserved, this.id])
+
+    if (response.rows.length != 1) {
+        throw new Error('Unable to update book.')
+    }
+    return new Book(response.rows[0]);
   }
-  return new Book(response.rows[0]);
-}
+
+  async destroy() {
+    const response = await db.query('DELETE FROM books WHERE id = $1 RETURNING *', [this.id]);
+    if (response.rows.length != 1) {
+        throw new Error('Unable to delete book.')
+    }
+    return new Book(response.rows[0]);
+  }
   
 }
 
