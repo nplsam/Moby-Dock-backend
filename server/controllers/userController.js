@@ -30,14 +30,24 @@ async function login (req, res) {
   }
 }
 
-async function logout (req, res) {
+// async function logout (req, res) {
+//   try {
+//     const validToken = await Token.getOneByToken(req.headers["authorization"])
+//     const user = await User.getOneById(validToken.user_id)
+//     await validToken.destroy()
+//     res.status(200).json("Successfully logged out.")
+//   } catch (err) {
+//     res.status(500).json({error: err.message})
+//   }
+// }
+
+async function logout(req, res) {
   try {
-    const validToken = await Token.getOneByToken(req.headers["authorization"])
-    const user = await User.getOneById(validToken.user_id)
-    await validToken.destroy()
-    res.status(200).json("Successfully logged out.")
+    const token = req.headers["authorization"];
+    await Token.destroyByToken(token);
+    res.status(200).json("Successfully logged out.");
   } catch (err) {
-    res.status(500).json({error: err.message})
+    res.status(500).json({ error: err.message });
   }
 }
 
