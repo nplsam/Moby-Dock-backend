@@ -13,30 +13,6 @@ CREATE TABLE books(
     PRIMARY KEY (id)
 );
 
-CREATE TABLE users (
-    user_id INT GENERATED ALWAYS AS IDENTITY,
-    username VARCHAR(30) UNIQUE NOT NULL,
-    password CHAR(60) NOT NULL,
-    PRIMARY KEY (user_id)
-);
-
-CREATE TABLE token (
-    id INT GENERATED ALWAYS AS IDENTITY,
-    user_id INT NOT NULL,
-    token CHAR(36) UNIQUE NOT NULL,
-    PRIMARY KEY (token_id),
-    FOREIGN KEY (user_id) REFERENCES users("user_id")
-);
-
-CREATE TABLE reserved_books (
-    reserved_id INT GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(100),
-    book_id INT REFERENCES books(id),
-    user_id INT REFERENCES user_account(user_id),
-    pick_up_by DATE,
-    PRIMARY KEY (reserved_id)
-);
-
 INSERT INTO books (name, author, genre, reserved, image)
 VALUES
     ('Moby-Dick', 'Herman Melville', 'Fiction', FALSE, 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781681778488/moby-dick-9781681778488_hr.jpg'),
@@ -140,3 +116,29 @@ VALUES
     ('Hunger Games,The:Hunger Games Trilogy', 'Suzanne Collins', 'Fiction', FALSE, ''),
     ('Lost Boy, A Foster Childs Search for the Love of a Family', 'Dave pelzer', 'Biography', FALSE, ''),
     ('Jamies Ministry of Food:Anyone Can Learn to Cook in 24 Hours', 'Jamie Oliver', 'Food', FALSE, '');
+
+
+CREATE TABLE user_account (
+    user_id INT GENERATED ALWAYS AS IDENTITY,
+    username VARCHAR(30) UNIQUE NOT NULL,
+    password CHAR(60) NOT NULL,
+    PRIMARY KEY (user_id)
+);
+
+CREATE TABLE token (
+    token_id INT GENERATED ALWAYS AS IDENTITY,
+    user_id INT NOT NULL,
+    token CHAR(36) UNIQUE NOT NULL,
+    PRIMARY KEY (token_id),
+    FOREIGN KEY (user_id) REFERENCES user_account("user_id")
+);
+
+CREATE TABLE reserved_books (
+    reserved_id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(100),
+    book_id INT REFERENCES books(id),
+    user_id INT REFERENCES user_account(user_id),
+    pick_up_by DATE,
+    PRIMARY KEY (reserved_id)
+)
+
