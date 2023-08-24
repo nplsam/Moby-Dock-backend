@@ -36,10 +36,10 @@ class Book {
 
   static async findByGenre(genre) {
     const response = await db.query('SELECT * FROM books WHERE LOWER(genre) = $1', [genre]);
-    if (response.rows.length != 1) {
-        throw new Error("Unable to locate books.")
+    if (response.rows.length === 0) {
+        throw new Error("No books found for the specified genre.")
     }
-    return new Book(response.rows[0]);
+    return response.rows.map(row => new Book(row))
   }
 
   static async create(data) {
