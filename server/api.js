@@ -4,6 +4,7 @@ const logger = require('morgan')
 
 const bookRouter = require('./routes/bookRoutes')
 const userRouter = require('./routes/userRoutes')
+const tradeRouter = require('./routes/tradeRoutes')
 
 const api = express()
 
@@ -20,5 +21,6 @@ api.get('/', (req, res) => {
 
 api.use('/books', bookRouter)
 api.use('/users', userRouter)
+api.use('/trades', tradeRouter)
 
 module.exports = api

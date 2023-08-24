@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS books cascade;
 DROP TABLE IF EXISTS user_account cascade;
 DROP TABLE IF EXISTS token;
 DROP TABLE IF EXISTS reserved_books;
+DROP TABLE IF EXISTS trades;
 
 CREATE TABLE books(
     id INT GENERATED ALWAYS AS IDENTITY, 
@@ -140,5 +141,18 @@ CREATE TABLE reserved_books (
     user_id INT REFERENCES user_account(user_id),
     pick_up_by DATE,
     PRIMARY KEY (reserved_id)
-)
+);
+
+CREATE TABLE trades (
+    post_id INT GENERATED ALWAYS AS IDENTITY,
+    title VARCHAR (100) NOT NULL,
+    author VARCHAR (100) NOT NULL,
+    genre VARCHAR (50) NOT NULL,
+    email VARCHAR (300) NOT NULL,
+    PRIMARY KEY (post_id)
+);
+
+INSERT INTO trades (title, author, genre, email)
+VALUES
+('Harry Potter', 'J.K. Rowling','Fiction', 'bobby@gmail.com' );
 
