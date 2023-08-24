@@ -21,6 +21,7 @@ api.get('/', (req, res) => {
 
 api.use('/books', bookRouter)
 api.use('/users', userRouter)
+api.use('/account', reservedBookRouter)
 api.use('/trades', tradeRouter)
 
 module.exports = api
