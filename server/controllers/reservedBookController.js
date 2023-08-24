@@ -2,7 +2,7 @@ const ReservedBooks = require('../models/ReservedBook')
 
 async function index (req, res) {
   try {
-      const reservedBooks = await reservedBooks.getAll();
+      const reservedBooks = await ReservedBooks.getAll();
       res.status(200).json(reservedBooks);
   } catch (err) {
       res.status(500).json({ error: err.message })
@@ -12,18 +12,8 @@ async function index (req, res) {
 async function showById (req, res) {
   try {
       const id = parseInt(req.params.id);
-      const reservedBook = await ReservedBooks.getOneById(id);
-      res.status(200).json(reservedBook);
-  } catch (err) {
-      res.status(404).json({ error: err.message })
-  }
-}
-
-async function showByName (req, res) {
-  try {
-      const name = parseInt(req.params.name);
-      const reservedBook = await ReservedBooks.getOneByName(name);
-      res.status(200).json(reservedBook);
+      const reservedId = await ReservedBooks.getOneById(id);
+      res.status(200).json(reservedId);
   } catch (err) {
       res.status(404).json({ error: err.message })
   }
@@ -41,8 +31,8 @@ async function create (req, res) {
 
 async function destroy (req, res) {
   try {
-      const book_id = parseInt(req.params.id);
-      const reservedBookToDelete = await ReservedBooks.getOneById(book_id);
+      const reserved_id = parseInt(req.params.id);
+      const reservedBookToDelete = await ReservedBooks.getOneById(reserved_id);
       await reservedBookToDelete.destroy();
       res.sendStatus(204)
   } catch (err) {
@@ -53,7 +43,6 @@ async function destroy (req, res) {
 module.exports = {
   index,
   showById,
-  showByName,
   create,
   destroy
 }
