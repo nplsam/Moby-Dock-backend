@@ -34,6 +34,14 @@ class Book {
   //   return new Book(response.rows[0]);
   // }
 
+  static async findByGenre(genre) {
+    const response = await db.query('SELECT * FROM books WHERE LOWER(genre) = $1', [genre]);
+    if (response.rows.length != 1) {
+        throw new Error("Unable to locate books.")
+    }
+    return new Book(response.rows[0]);
+  }
+
   static async create(data) {
     const { name: name, author: author, genre: genre, reserved: reserved, image: image } = data
     const response = await db.query('INSERT INTO books (name, author, genre) VALUES ($1, $2, $3) RETURNING *', [name, author, genre, reserved, image]);

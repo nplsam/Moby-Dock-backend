@@ -8,8 +8,6 @@ const reservedBookRouter = require('./routes/reservedBookRoutes')
 const tradeRouter = require('./routes/tradeRoutes')
 
 
-
-
 const api = express()
 
 api.use(cors())
