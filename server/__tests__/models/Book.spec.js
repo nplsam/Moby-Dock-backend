@@ -59,16 +59,16 @@ describe('getOneById', () => {
 })
 
 describe('create', () => {
-  // it('should create book with data', async() => {
-  //   let bookData = { name: 'Pride and Prejudice', author: 'Jane Austen', genre: 'Romance'}
-  //   jest.spyOn(db, 'query')
-  //     .mockResolvedValueOnce({ rows: [{...bookData, id: 1 }] })
+  it('should create book with data', async() => {
+    let bookData = { name: 'Pride and Prejudice', author: 'Jane Austen', genre: 'Romance'}
+    jest.spyOn(db, 'query')
+      .mockResolvedValueOnce({ rows: [{...bookData, id: 1 }] })
 
-  //     const result = await ReservedBook.create(bookData)
-  //     expect(result).toHaveProperty('name')
-  //     expect(result).toHaveProperty('author')
-  //     expect(result).toHaveProperty('genre')
-  // })
+      const result = await ReservedBook.create(bookData)
+      expect(result).toHaveProperty('name')
+      expect(result).toHaveProperty('author')
+      expect(result).toHaveProperty('genre')
+  })
 
   it('should throw an Error on db query error', async () => {
     jest.spyOn(db, 'query').mockRejectedValue(new Error('name is missing'))
