@@ -15,14 +15,14 @@ async function register (req, res) {
 }
 
 async function login (req, res) {
-  const data = req.body;
   try {
+      const data = req.body;
       const user = await User.getOneByUsername(data.username);
       const authenticated = await bcrypt.compare(data.password, user.password);
       if (!authenticated) {
           throw new Error('Incorrect credentials.');
       } else {
-          const token = await Token.create(user["id"]);
+          const token = await Token.create(user["user_id"]);
           res.status(200).json({ authenticated: true, token: token.token });
       }     
   } catch (err) {
@@ -30,14 +30,13 @@ async function login (req, res) {
   }
 }
 
-async function logout (req, res) {
+async function logout(req, res) {
   try {
-    const validToken = await Token.getOneByToken(req.headers["authorization"])
-    const user = await User.getOneById(validToken.user_id)
-    await validToken.destroy()
-    res.status(200).json("Successfully logged out.")
+    const token = req.headers["authorization"];
+    await Token.destroyByToken(token);
+    res.status(200).json("Successfully logged out.");
   } catch (err) {
-    res.status(500).json({error: err.message})
+    res.status(500).json({ error: err.message });
   }
 }
 

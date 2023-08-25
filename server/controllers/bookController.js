@@ -19,6 +19,26 @@ async function show (req, res) {
   }
 }
 
+async function findByName(req, res) {
+  try {
+    const name = req.params.name.toLowerCase()
+    const book = await Book.findByName(name)
+    res.status(200).json(book)
+  } catch (err) {
+    res.status(404).json({ error: err.message })
+  }
+}
+
+async function findByGenre (req, res) {
+  try {
+      const genre = req.params.genre.toLowerCase()
+      const book = await Book.findByGenre(genre);
+      res.status(200).json(book);
+  } catch (err) {
+      res.status(404).json({ error: err.message })
+  }
+}
+
 async function create (req, res) {
   try {
       const data = req.body
@@ -61,6 +81,8 @@ async function destroy (req, res) {
 module.exports = {
   index,
   show,
+  findByName,
+  findByGenre,
   create,
   update,
   destroy
