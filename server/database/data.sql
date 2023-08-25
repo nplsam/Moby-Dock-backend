@@ -35,7 +35,7 @@ VALUES
     ('The Lost Symbol', 'Dan Brown', 'Crime', FALSE, 'https://images.penguinrandomhouse.com/cover/9780307950680'),
     ('New Moon', 'Stephenie Meyer', 'Fiction', FALSE, 'https://m.media-amazon.com/images/P/1904233880.01._SCLZZZZZZZ_SX500_.jpg'),
     ('Deception Point', 'Dan Brown', 'Crime', FALSE, 'https://pictures.abebooks.com/isbn/9780552159722-uk.jpg'),
-    ('Eclipse', 'Stephenie Meyer', 'Fiction', FALSE, 'https://images-eu.ssl-images-amazon.com/images/I/41I3erHDIRL._AC_UL600_SR600,600_.jpg'),
+    ('Eclipse', 'Stephenie Meyer', 'Fiction', FALSE, 'https://ccu.marmot.org/bookcover.php?size=large&id=87e3d621-5545-46ec-b1e4-e1f50781e290&type=overdrive'),
     ('The Lovely Bones', 'Alice Sebold', 'Fiction', FALSE, 'https://m.media-amazon.com/images/I/41sSMTDFBCL._SX327_BO1,204,203,200_.jpg'),
     ('Digital Fortress', 'Dan Brown', 'Crime', FALSE, 'https://m.media-amazon.com/images/I/61MaBq+c2RL._AC_UF894,1000_QL80_.jpg'),
     ('The Curious Incident of the Dog in the Night-time', 'Mark Haddon', 'Crime', FALSE, 'https://m.media-amazon.com/images/I/71tuo9YISuL._AC_UF894,1000_QL80_.jpg'),
