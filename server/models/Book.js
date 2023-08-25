@@ -26,13 +26,21 @@ class Book {
     return new Book(response.rows[0]);
   }
 
-  // static async findByName(name) {
-  //   const response = await db.query('SELECT * WHERE LOWER(name) = $1', [name]);
-  //   if (response.rows.length != 1) {
-  //       throw new Error("Unable to locate book.")
-  //   }
-  //   return new Book(response.rows[0]);
-  // }
+  static async findByName(name) {
+    const response = await db.query('SELECT * FROM books WHERE LOWER(name) = $1', [name]);
+    if (response.rows.length != 1) {
+        throw new Error("Unable to locate book.")
+    }
+    return new Book(response.rows[0]);
+  }
+
+  static async findByGenre(genre) {
+    const response = await db.query('SELECT * FROM books WHERE LOWER(genre) = $1', [genre]);
+    if (response.rows.length === 0) {
+        throw new Error("No books found for the specified genre.")
+    }
+    return response.rows.map(row => new Book(row))
+  }
 
   static async create(data) {
     const { name: name, author: author, genre: genre, reserved: reserved, image: image } = data
